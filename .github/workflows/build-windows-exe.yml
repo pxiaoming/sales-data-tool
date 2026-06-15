@@ -1,0 +1,62 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        env:
+          PYTHONUTF8: "1"
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-build.txt
+          pip install -e .
+
+      - name: Build exe with PyInstaller
+        env:
+          PYTHONUTF8: "1"
+        run: pyinstaller finance-data.spec --noconfirm --clean
+
+      - name: Prepare release package
+        shell: pwsh
+        env:
+          PYTHONUTF8: "1"
+        run: |
+          $ErrorActionPreference = "Stop"
+          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+          $packageRoot = "package/KA促销费用报表"
+          New-Item -ItemType Directory -Force -Path "$packageRoot/inputs" | Out-Null
+          Copy-Item "dist/KA促销费用报表.exe" "$packageRoot/"
+          Copy-Item "使用说明.txt" "$packageRoot/"
+
+          $zipPath = "KA促销费用报表-win64.zip"
+          if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+          Compress-Archive -Path $packageRoot -DestinationPath $zipPath
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KA促销费用报表-win64
+          path: KA促销费用报表-win64.zip
+          if-no-files-found: error

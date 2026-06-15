@@ -1,0 +1,350 @@
+input:
+  sheet_name: Detail
+  header_row: 1
+
+output:
+  sheet_name: "Sheet1"
+  template_path: "templates/ka_promo_and_expense_template.xlsx"
+  filename_template: "{source_stem}_{yyyymmdd}.xlsx"
+  freeze_header: false
+  auto_fit_columns: false
+
+business_rules:
+  - name: ace_ego_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0376"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000030"'
+    sum_field: "Due Amount"
+    percentage: 0.11
+    name_template: "ACE EGO {source_yyyymm} Promo Accrual"
+    template_cells:
+      E5: 'lit("0376")'
+      F5: 'lit("000030")'
+      H5: 'round(accrual_amount, 2)'
+      J5: 'name'
+      L5: 'round(due_amount_total, 2)'
+      M5: 'percentage'
+      E6: 'lit("0376")'
+      F6: 'lit("000030")'
+      I6: 'round(accrual_amount, 2)'
+      J6: 'name'
+      L6: 'round(due_amount_total, 2)'
+      M6: 'percentage'
+  - name: aceego_1pct_marketing_allowance_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0376"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000030"'
+    sum_field: "Due Amount"
+    percentage: 0.01
+    name_template: "ACE EGO {source_yyyymm} 1% Marketing Allowance Accrual"
+    template_cells:
+      E14: 'lit("0376")'
+      F14: 'lit("000030")'
+      H11: 'round(accrual_amount, 2)'
+      I12: 'round(accrual_amount, 2)'
+      H13: 'round(accrual_amount, 2)'
+      I14: 'round(accrual_amount, 2)'
+      J11: 'name'
+      J12: 'name'
+      J13: 'name'
+      J14: 'name'
+      L11: 'round(due_amount_total, 2)'
+      L12: 'round(due_amount_total, 2)'
+      L13: 'round(due_amount_total, 2)'
+      L14: 'round(due_amount_total, 2)'
+      M11: 'percentage'
+      M12: 'percentage'
+      M13: 'percentage'
+      M14: 'percentage'
+  - name: g10_eg0_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "B11946"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000030"'
+    sum_field: "Due Amount"
+    percentage: 0.14
+    name_template: "G10 EG0 {source_yyyymm} Promo Accrual"
+    template_cells:
+      E19: 'lit("B11946")'
+      F19: 'lit("000030")'
+      H19: 'round(accrual_amount, 2)'
+      E20: 'lit("B11946")'
+      F20: 'lit("000030")'
+      I20: 'round(accrual_amount, 2)'
+      J19: 'name'
+      J20: 'name'
+      L19: 'round(due_amount_total, 2)'
+      L20: 'round(due_amount_total, 2)'
+      M19: 'percentage'
+      M20: 'percentage'
+  - name: amazon_eg0_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0314"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000030"'
+    sum_field: "Due Amount"
+    percentage: 0.14
+    name_template: "Amazon EG0 {source_yyyymm} Promo Accrual"
+    template_cells:
+      E25: 'lit("0314")'
+      F25: 'lit("000030")'
+      H25: 'round(accrual_amount, 2)'
+      J25: 'name'
+      L25: 'round(due_amount_total, 2)'
+      M25: 'percentage'
+      E30: 'lit("0314")'
+      F30: 'lit("000030")'
+      I30: 'round(accrual_amount, 2)'
+      J30: 'name'
+      L30: 'round(due_amount_total, 2)'
+      M30: 'percentage'
+  - name: amazon_flex_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0314"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000050"'
+    sum_field: "Due Amount"
+    percentage: 0.145
+    name_template: "Amazon FLEX {source_yyyymm} Promo Accrual"
+    template_cells:
+      E26: 'lit("0314")'
+      F26: 'lit("000050")'
+      H26: 'round(accrual_amount, 2)'
+      J26: 'name'
+      L26: 'round(due_amount_total, 2)'
+      M26: 'percentage'
+      E31: 'lit("0314")'
+      F31: 'lit("000050")'
+      I31: 'round(accrual_amount, 2)'
+      J31: 'name'
+      L31: 'round(due_amount_total, 2)'
+      M31: 'percentage'
+  - name: amazon_flex_gray_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0314"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000051"'
+    sum_field: "Due Amount"
+    percentage: 0.145
+    name_template: "Amazon FLEX Gray {source_yyyymm} Promo Accrual"
+    template_cells:
+      E27: 'lit("0314")'
+      F27: 'lit("000051")'
+      H27: 'round(accrual_amount, 2)'
+      J27: 'name'
+      L27: 'round(due_amount_total, 2)'
+      M27: 'percentage'
+      E32: 'lit("0314")'
+      F32: 'lit("000051")'
+      I32: 'round(accrual_amount, 2)'
+      J32: 'name'
+      L32: 'round(due_amount_total, 2)'
+      M32: 'percentage'
+  - name: amazon_skil_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0314"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000070"'
+    sum_field: "Due Amount"
+    percentage: 0.12
+    name_template: "Amazon SKIL {source_yyyymm} Promo Accrual"
+    template_cells:
+      E28: 'lit("0314")'
+      F28: 'lit("000070")'
+      H28: 'round(accrual_amount, 2)'
+      J28: 'name'
+      L28: 'round(due_amount_total, 2)'
+      M28: 'percentage'
+      E33: 'lit("0314")'
+      F33: 'lit("000070")'
+      I33: 'round(accrual_amount, 2)'
+      J33: 'name'
+      L33: 'round(due_amount_total, 2)'
+      M33: 'percentage'
+  - name: amazon_skilsaw_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0314"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000080"'
+    sum_field: "Due Amount"
+    percentage: 0.12
+    name_template: "Amazon SKILSAW {source_yyyymm} Promo Accrual"
+    template_cells:
+      E29: 'lit("0314")'
+      F29: 'lit("000080")'
+      H29: 'round(accrual_amount, 2)'
+      J29: 'name'
+      L29: 'round(due_amount_total, 2)'
+      M29: 'percentage'
+      E34: 'lit("0314")'
+      F34: 'lit("000080")'
+      I34: 'round(accrual_amount, 2)'
+      J34: 'name'
+      L34: 'round(due_amount_total, 2)'
+      M34: 'percentage'
+  - name: lowes_ego_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000030"'
+    sum_field: "Due Amount"
+    percentage: 0.10
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      E55: 'lit("0178")'
+      F55: 'lit("000030")'
+      H55: 'round(accrual_amount, 2)'
+      J55: 'name'
+      L55: 'round(due_amount_total, 2)'
+      M55: 'percentage'
+      J61: 'name'
+  - name: lowes_flex_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000050"'
+    sum_field: "Due Amount"
+    percentage: 0.08
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      E56: 'lit("0178")'
+      F56: 'lit("000050")'
+      H56: 'round(accrual_amount, 2)'
+      J56: 'name'
+      L56: 'round(due_amount_total, 2)'
+      M56: 'percentage'
+  - name: lowes_flex_gray_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000051"'
+    sum_field: "Due Amount"
+    percentage: 0.08
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      E57: 'lit("0178")'
+      F57: 'lit("000051")'
+      H57: 'round(accrual_amount, 2)'
+      J57: 'name'
+      L57: 'round(due_amount_total, 2)'
+      M57: 'percentage'
+  - name: lowes_skil_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000070"'
+    sum_field: "Due Amount"
+    percentage: 0.10
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      E58: 'lit("0178")'
+      F58: 'lit("000070")'
+      H58: 'round(accrual_amount, 2)'
+      J58: 'name'
+      L58: 'round(due_amount_total, 2)'
+      M58: 'percentage'
+  - name: lowes_skilsaw_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "000080"'
+    sum_field: "Due Amount"
+    percentage: 0.10
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      E59: 'lit("0178")'
+      F59: 'lit("000080")'
+      H59: 'round(accrual_amount, 2)'
+      J59: 'name'
+      L59: 'round(due_amount_total, 2)'
+      M59: 'percentage'
+  - name: lowes_odm_promo_accrual_1
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") == "ODM002"'
+    sum_field: "Due Amount"
+    percentage: 0.195
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      E60: 'lit("0178")'
+      F60: 'lit("ODM002")'
+      H60: 'round(accrual_amount, 2)'
+      J60: 'name'
+      L60: 'round(due_amount_total, 2)'
+      M60: 'percentage'
+  - name: lowes_promo_due_total_row61
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+      - 'text("Brand") in ("000030", "000050", "000051", "000070", "000080", "ODM002")'
+    sum_field: "Due Amount"
+    percentage: 0.10
+    name_template: "Lowes {source_yyyymm} Promo Accrual"
+    template_cells:
+      I61: 'round(due_amount_total, 2)'
+      L61: 'round(due_amount_total, 2)'
+  - name: lowes_mst_accrual_by_brand
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+    group_by:
+      - Brand
+    group_row_pairs:
+      - [68, 68]
+      - [69, 69]
+      - [70, 70]
+      - [71, 71]
+      - [72, 72]
+      - [73, 73]
+    sum_field: "Due Amount"
+    percentage: 0.02
+    name_template: "Lowes {source_yyyymm} MST Accrual"
+    template_cells:
+      E{row}: 'lit("0178")'
+      F{row}: 'brand'
+      I{row}: 'round(accrual_amount, 2)'
+      J{row}: 'name'
+      L{row}: 'round(due_amount_total, 2)'
+      M{row}: 'percentage'
+    summary_template_cells:
+      I66: 'round(total_accrual_amount, 2)'
+      J66: 'name'
+      L66: 'round(total_due_amount_total, 2)'
+      H67: 'round(total_accrual_amount, 2)'
+      J67: 'name'
+      L67: 'round(total_due_amount_total, 2)'
+      H74: 'round(total_accrual_amount, 2)'
+      J74: 'name'
+      L74: 'round(total_due_amount_total, 2)'
+  - name: lowes_coop_marketing_accrual_by_brand
+    source_filters:
+      - 'text("Customer number") == "0178"'
+      - 'num("Due Amount") >= 0'
+    group_by:
+      - Brand
+    group_row_pairs:
+      - [39, 45]
+      - [40, 46]
+      - [41, 47]
+      - [42, 48]
+      - [43, 49]
+      - [44, 50]
+    sum_field: "Due Amount"
+    percentage: 0.0015
+    name_template: "Lowes {source_yyyymm} Co-op Marketing Accrual {brand}"
+    template_cells:
+      E{row}: 'lit("0178")'
+      F{row}: 'brand'
+      H{row}: 'round(accrual_amount, 2)'
+      J{row}: 'name'
+      L{row}: 'round(due_amount_total, 2)'
+      M{row}: 'percentage'
+      E{credit_row}: 'lit("0178")'
+      F{credit_row}: 'brand'
+      I{credit_row}: 'round(accrual_amount, 2)'
+      J{credit_row}: 'name'
+      L{credit_row}: 'round(due_amount_total, 2)'
+      M{credit_row}: 'percentage'

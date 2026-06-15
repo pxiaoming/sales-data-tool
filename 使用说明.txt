@@ -1,0 +1,44 @@
+KA 促销费用报表 — 使用说明
+================================
+
+【操作步骤】
+
+1. 将本月源 Excel 文件放入 inputs 文件夹
+   （文件名可含空格，例如 Sales report_NA_202605.xlsx）
+
+2. 双击运行程序：
+   - 方式 A：双击「KA促销费用报表.exe」（推荐，无需安装 Python）
+   - 方式 B：双击「运行.bat」（需维护人员预先配置 Python 环境）
+
+3. 处理完成后，到 output 文件夹查看生成的报表
+
+【exe 版本说明】
+
+- exe 与 inputs、output 文件夹放在同一目录下
+- 首次运行会自动创建 inputs、output 文件夹（若不存在）
+- 控制台已配置 UTF-8 编码，中文提示可正常显示
+
+【注意事项】
+
+- 运行前请关闭源 Excel 文件，避免被占用
+- inputs 里有多份文件时，会自动使用最近修改的那一份
+- 若出现错误，请截图窗口内容并联系维护人员
+
+【维护人员 — 打包 exe】
+
+方式 A（推荐，Mac 也可操作）：
+  1. 将代码推送到 GitHub
+  2. 打开仓库 → Actions → Build Windows EXE → Run workflow
+  3. 运行完成后在 Artifacts 中下载 KA促销费用报表-win64.zip
+  4. 也可在推送 v 开头标签（如 v0.1.0）时自动触发打包
+
+方式 B（本地 Windows）：
+  双击 scripts\build_windows.bat，完成后 exe 位于 dist\ 目录。
+
+首次部署 Python 环境请在项目目录执行：
+  python -m venv .venv
+  .venv\bin\pip install -r requirements.txt   （Mac/Linux）
+  .venv\Scripts\pip install -r requirements.txt   （Windows）
+  .venv\bin\pip install -e .   （Mac/Linux）
+  .venv\Scripts\pip install -e .   （Windows）
+

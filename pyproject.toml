@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finance-excel-flow"
+version = "0.1.0"
+description = "A configurable Excel processing workflow for monthly finance files."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "openpyxl>=3.1.0",
+  "PyYAML>=6.0.0",
+]
+
+[project.scripts]
+finance-excel-flow = "finance_excel_flow.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

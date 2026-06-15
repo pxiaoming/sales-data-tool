@@ -1,0 +1,38 @@
+input:
+  sheet_name: 0
+  header_row: 1
+
+output:
+  sheet_name: "结果"
+  filename_template: "{source_stem}_processed_{yyyymmdd}.xlsx"
+  freeze_header: true
+  auto_fit_columns: true
+
+transform:
+  rename_columns:
+    原始客户名: 客户名称
+    原始销售额: 销售额
+    原始成本: 成本
+    原始状态: 状态
+  required_columns:
+    - 客户名称
+    - 销售额
+    - 成本
+    - 状态
+  drop_empty_rows: true
+  filters:
+    - 'text("状态") == "有效"'
+    - 'num("销售额") > 0'
+  calculated_columns:
+    毛利: 'num("销售额") - num("成本")'
+    毛利率: 'round((num("销售额") - num("成本")) / num("销售额"), 4) if num("销售额") != 0 else None'
+  select_columns:
+    - 客户名称
+    - 销售额
+    - 成本
+    - 毛利
+    - 毛利率
+    - 状态
+  sort_by:
+    - 客户名称
+
