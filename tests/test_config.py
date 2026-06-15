@@ -370,12 +370,21 @@ business_rules:
       - 'text("Customer number") == "0178"'
       - 'num("Due Amount") >= 0'
       - 'text("Brand") in ("000030", "000050", "000051", "000070", "000080", "ODM002")'
+    group_by:
+      - Brand
+    group_percentages:
+      "000030": 0.10
+      "000050": 0.08
+      "000051": 0.08
+      "000070": 0.10
+      "000080": 0.10
+      "ODM002": 0.195
     sum_field: "Due Amount"
     percentage: 0.10
     name_template: "Lowes EGO {{source_yyyymm}} Promo Accrual"
-    template_cells:
-      I61: 'round(due_amount_total, 2)'
-      L61: 'round(due_amount_total, 2)'
+    summary_template_cells:
+      I61: 'round(total_accrual_amount, 2)'
+      L61: 'round(total_due_amount_total, 2)'
   - name: lowes_mst_accrual_by_brand
     source_filters:
       - 'text("Customer number") == "0178"'
@@ -550,7 +559,7 @@ business_rules:
             self.assertEqual(output_ws["M55"].value, 0.10)
             self.assertEqual(output_ws["E61"].value, "0178")
             self.assertEqual(output_ws["F61"].value, "000030")
-            self.assertAlmostEqual(float(output_ws["I61"].value), 120.0, places=6)
+            self.assertAlmostEqual(float(output_ws["I61"].value), 13.1, places=6)
             self.assertEqual(output_ws["J61"].value, output_ws["J55"].value)
             self.assertEqual(float(output_ws["L61"].value), 120.0)
             self.assertEqual(output_ws["M61"].value, 0.10)
