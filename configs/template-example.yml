@@ -40,7 +40,9 @@ business_rules:
     percentage: 0.01
     name_template: "ACE EGO {source_yyyymm} 1% Marketing Allowance Accrual"
     template_cells:
+      E11: 'lit("0376")'
       E12: 'lit("0376")'
+      F11: 'lit("000030")'
       F12: 'lit("000030")'
       H11: 'round(accrual_amount, 2)'
       I12: 'round(accrual_amount, 2)'
@@ -323,12 +325,12 @@ business_rules:
     group_by:
       - Brand
     group_row_pairs:
+      - [37, 43]
+      - [38, 44]
       - [39, 45]
       - [40, 46]
       - [41, 47]
       - [42, 48]
-      - [43, 49]
-      - [44, 50]
     sum_field: "Due Amount"
     percentage: 0.0015
     name_template: "Lowes {source_yyyymm} Co-op Marketing Accrual {brand}"
